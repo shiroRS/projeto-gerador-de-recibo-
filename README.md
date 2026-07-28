@@ -20,7 +20,7 @@ O programa permite informar os dados do cliente, selecionar produtos, adicionar 
 
   * Dinheiro
   * Cartão
-  * Pix
+  * Pixm (nao gera QRcode)
 * ✅ Geração do recibo contendo:
 
   * Nome do cliente
