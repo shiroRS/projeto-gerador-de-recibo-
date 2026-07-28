@@ -1,6 +1,3 @@
-from datetime import datetime
-
-
 itens = {
     1: ("calca", 190),
     2: ("camisa", 80),
@@ -37,24 +34,37 @@ print(50*"-")
 
                              #produto
 
+prdodutos_escolhidos=[]
+total=0
+
 while True:
     print(f"Digite seu nome: {nome}")
     print(f"Digite seu CPF: {cpf}")
     print("escolha um produto:")
 
-    for id, (name, price) in itens.items():
-        print(f"{id}: {name} - R${price:.2f}")
+    for id, (nome_produto, price) in itens.items():
+        print(f"{id}: {nome_produto} - R${price:.2f}")
 
     try:
         produto = int(input("Digite o número do produto: "))
+
         if produto not in itens:
             print("Produto inválido. Por favor, escolha um produto válido.".upper())
             continue
 
+        prdodutos_escolhidos.append(itens[produto])
+        total+=itens[produto][1]
+
+        continuar=input("deseja continuar comprando? (s/n)")
+
+        if continuar !="s":
+            break
+
+
     except ValueError:
         print("Por favor, digite um número válido.".upper())
         continue
-    break
+    
 
 print(50*"-")
 
@@ -63,11 +73,15 @@ print(50*"-")
 while True:
     print(f"Digite seu nome: {nome}")
     print(f"Digite seu CPF: {cpf}")
-    print(f"Produto escolhido: {itens[produto][0]} - R${itens[produto][1]:.2f}")
+    print("produtos:  ")
+    for nome_produto, preco in prdodutos_escolhidos:
+        print(f"   -{nome_produto} - R${preco:.2f}")
+
+    print(f"valor total  :R${total:.2f}")  
 
     pagamento = input("Digite a forma de pagamento (dinheiro/cartão/pix): ").lower()
 
-    if pagamento != "dinheiro" and pagamento != "cartão" and pagamento != "pix":
+    if pagamento != "dinheiro" and pagamento != "cartao" and pagamento != "pix":
         print("Forma de pagamento inválida. Por favor, escolha entre dinheiro, cartão ou pix.".upper())
         print(50*"-")
         continue
@@ -101,8 +115,11 @@ print("=" * 50)
 
 print(f"Nome do Cliente    : {nome}")
 print(f"CPF                : {cpf}")
-print(f"Produto            : {produto}")
-print(f"Valor Pago         : R$ {preco}")
+print("produtos:  ")
+for nome_produto, preco in prdodutos_escolhidos:
+    print(f" -{nome_produto} - R${preco:.2f}")
+    
+print(f"valor pago   :R${total:.2f}")  
 print(f"Forma de Pagamento : {pagamento}")
 print(f"Data e Hora        : {data}")
 
