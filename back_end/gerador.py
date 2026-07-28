@@ -1,0 +1,121 @@
+from datetime import datetime
+
+
+itens = {
+    1: ("calca", 190),
+    2: ("camisa", 80),
+    3: ("tenis", 400),
+    4: ("meia", 20),
+}
+
+                              #nome
+
+while True:
+    nome=input("Digite seu nome: ").strip()
+    if nome=="":
+        print("O nome não pode estar vazio.".upper())
+        print(50*"-")
+    else:
+        break
+
+print(50*"-")
+
+                             #cpf
+
+while True:
+    print(f"Digite seu nome: {nome}")
+    cpf=input("Digite seu CPF: ").strip()
+    if cpf=="":
+        print("O CPF não pode estar vazio.".upper())
+    if len(cpf) != 11:
+        print("O CPF deve ter 11 dígitos.".upper())
+        print(50*"-")
+    else:
+        break
+        
+print(50*"-")
+
+                             #produto
+
+while True:
+    print(f"Digite seu nome: {nome}")
+    print(f"Digite seu CPF: {cpf}")
+    print("escolha um produto:")
+
+    for id, (name, price) in itens.items():
+        print(f"{id}: {name} - R${price:.2f}")
+
+    try:
+        produto = int(input("Digite o número do produto: "))
+        if produto not in itens:
+            print("Produto inválido. Por favor, escolha um produto válido.".upper())
+            continue
+
+    except ValueError:
+        print("Por favor, digite um número válido.".upper())
+        continue
+    break
+
+print(50*"-")
+
+                            #forma de pagamento
+
+while True:
+    print(f"Digite seu nome: {nome}")
+    print(f"Digite seu CPF: {cpf}")
+    print(f"Produto escolhido: {itens[produto][0]} - R${itens[produto][1]:.2f}")
+
+    pagamento = input("Digite a forma de pagamento (dinheiro/cartão/pix): ").lower()
+
+    if pagamento != "dinheiro" and pagamento != "cartão" and pagamento != "pix":
+        print("Forma de pagamento inválida. Por favor, escolha entre dinheiro, cartão ou pix.".upper())
+        print(50*"-")
+        continue
+    else:
+       break
+
+
+if produto ==1:
+    produto = itens[1][0]
+    preco = itens[1][1]
+elif produto ==2:
+    produto = itens[2][0]
+    preco = itens[2][1]
+elif produto ==3:
+    produto = itens[3][0]
+    preco = itens[3][1]
+elif produto ==4:
+    produto = itens[4][0]
+    preco = itens[4][1]
+
+
+                          #recibo   
+from datetime import datetime
+
+data = datetime.now().strftime("%d/%m/%Y   %H/%M/%S")
+
+print("\n")
+print("=" * 50)
+print("                 RECIBO")
+print("=" * 50)
+
+print(f"Nome do Cliente    : {nome}")
+print(f"CPF                : {cpf}")
+print(f"Produto            : {produto}")
+print(f"Valor Pago         : R$ {preco}")
+print(f"Forma de Pagamento : {pagamento}")
+print(f"Data e Hora        : {data}")
+
+print("-" * 50)
+print("Declaro ter recebido a importância acima")
+print("referente ao produto descrito neste recibo.")
+print("-" * 50)
+
+print("\n")
+print(f"____________________{nome}____________________")
+print("Assinatura do Recebedor")
+
+print("=" * 50)
+print("        Obrigado pela preferência!")
+print("=" * 50)
+print("\n")
