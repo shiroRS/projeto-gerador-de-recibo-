@@ -2,84 +2,112 @@
 
 ## 📌 Sobre o projeto
 
-Este projeto consiste em um programa desenvolvido em **Python** que gera um recibo de uma compra através das informações inseridas pelo usuário.
+Este projeto consiste em um sistema desenvolvido em **Python** para gerar recibos de compra de forma simples e organizada.
 
-O programa permite informar os dados do cliente, selecionar produtos, adicionar vários itens em uma mesma compra, calcular o valor total e escolher a forma de pagamento. Ao final, é exibido um recibo organizado com os dados da compra, data e hora.
+Além da geração do recibo, o projeto agora conta com **impressão direta em impressoras térmicas**, tornando-o uma ótima base para pequenos comércios, feiras e restaurantes.
+
+O programa permite cadastrar o cliente, selecionar diversos produtos, calcular automaticamente o valor total, escolher a forma de pagamento e imprimir o recibo em papel térmico.
 
 ---
 
 ## ⚙️ Funcionalidades
 
-* ✅ Cadastro do nome do cliente
-* ✅ Validação para impedir nome vazio
-* ✅ Cadastro do CPF com verificação de quantidade de dígitos
-* ✅ Exibição de produtos disponíveis e seus valores
-* ✅ Seleção de um ou mais produtos
-* ✅ Cálculo automático do valor total da compra
-* ✅ Escolha da forma de pagamento:
-
-  * Dinheiro
-  * Cartão
-  * Pixm (nao gera QRcode)
-* ✅ Geração do recibo contendo:
-
-  * Nome do cliente
-  * CPF
-  * Produtos escolhidos
-  * Valor total
-  * Forma de pagamento
-  * Data e hora
-  * Campo para assinatura
+- ✅ Cadastro do nome do cliente
+- ✅ Validação para impedir nome vazio
+- ✅ Cadastro do CPF
+- ✅ Listagem de produtos disponíveis
+- ✅ Seleção de múltiplos produtos
+- ✅ Cálculo automático do valor total
+- ✅ Escolha da forma de pagamento
+  - 💵 Dinheiro
+  - 💳 Cartão
+  - 📱 Pix
+- ✅ Geração automática do recibo
+- ✅ Data e hora da compra
+- ✅ Campo para assinatura
+- ✅ Compatível com impressoras térmicas (58 mm)
+- ✅ Impressão direta utilizando a API de impressão do Windows (`pywin32`)
+- ✅ QR Code decorativo (ASCII) para pagamentos via Pix
 
 ---
 
 ## 🛠️ Tecnologias utilizadas
 
-* **Python 3**
-* Biblioteca **datetime** (utilizada para exibir a data e hora do recibo)
+- Python 3
+- datetime
+- pywin32
+- Windows Print API
 
 ---
 
 ## 📚 Conceitos praticados
 
-Durante o desenvolvimento do projeto foram utilizados conceitos fundamentais da linguagem Python:
+Durante o desenvolvimento foram utilizados diversos conceitos da linguagem Python:
 
-* Variáveis
-* Dicionários
-* Listas
-* Tuplas
-* Estruturas de repetição (`while` e `for`)
-* Estruturas condicionais (`if`, `elif` e `else`)
-* Tratamento de erros com `try` e `except`
-* Entrada de dados com `input()`
-* Exibição de informações com `print()`
+- Variáveis
+- Listas
+- Tuplas
+- Dicionários
+- Laços (`for` e `while`)
+- Estruturas condicionais (`if`, `elif`, `else`)
+- Tratamento de exceções (`try` / `except`)
+- Funções
+- Organização de código
+- Impressão utilizando a API do Windows
 
 ---
 
-## 🎯 Objetivo do projeto
+## 🖨️ Compatibilidade
 
-O objetivo deste projeto é praticar lógica de programação em Python, trabalhando com entrada de dados, validações, manipulação de listas e organização de informações para gerar um recibo de compra no terminal.
+O projeto foi testado com:
+
+- Impressora térmica POS-5890T
+- Papel térmico de 58 mm
+- Driver Generic / Text Only
 
 ---
 
 ## 📷 Exemplo de saída
 
+```text
+================================
+            RECIBO
+================================
+
+Cliente: João
+
+CPF: 12345678901
+
+Produtos
+
+- Camisa ............ R$ 80,00
+- Tênis ............. R$ 400,00
+
+--------------------------------
+
+Total: R$ 480,00
+
+Pagamento: Pix
+
+Data:
+28/07/2026 15:30
+
+--------------------------------
+
+Obrigado pela preferência!
+
+################################
+## #### ## ## #### ## #### ## ##
+## ##   ## ## ##   ## ##   ## ##
+####### #### ####### ####### ###
+## ## #### ## #### ## #### ## ##
+################################
 ```
-==================================================
-                    RECIBO
-==================================================
-Nome do Cliente    : João
-CPF                : 12345678901
 
-Produtos:
- - camisa - R$80.00
- - tenis - R$400.00
+---
 
-Valor pago         : R$480.00
-Forma de Pagamento : pix
-Data e Hora        : 28/07/2026 15:30:20
+## 🚀 Objetivo
 
-==================================================
-        Obrigado pela preferência!
-==================================================
-```
+Este projeto foi desenvolvido para praticar lógica de programação e conceitos fundamentais de Python, evoluindo posteriormente para um sistema capaz de realizar impressão em impressoras térmicas utilizadas em estabelecimentos comerciais.
+
+Além do aprendizado, o projeto serve como base para futuros sistemas de pedidos e emissão de comprovantes.
