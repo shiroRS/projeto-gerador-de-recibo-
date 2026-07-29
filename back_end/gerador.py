@@ -104,35 +104,108 @@ elif produto ==4:
 
 
                           #recibo   
+
+
+
 from datetime import datetime
 
-data = datetime.now().strftime("%d/%m/%Y   %H/%M/%S")
+data = datetime.now().strftime("%d/%m/%Y   %H.%M,%S")
 
-print("\n")
-print("=" * 50)
-print("                 RECIBO")
-print("=" * 50)
+                #feito por IA, precisa de uma impressora termica e instalar o driver dela (fiz com IA pq eu n sabia mexer com essa biblioteca)
 
-print(f"Nome do Cliente    : {nome}")
-print(f"CPF                : {cpf}")
-print("produtos:  ")
+import win32print #caso tenha ficado amarelo essa linha é completamente normal, funcioma msm assim (causa desconhecido por mim)
+
+printer_name = "Generic / Text Only"  # Nome da sua impressora
+
+texto = "\n"
+texto += "=" * 50 + "\n"
+texto += "                 RECIBO\n"
+texto += "=" * 50 + "\n\n"
+
+texto += f"Nome do Cliente : {nome}\n"
+texto += f"CPF             : {cpf}\n"
+texto += "Produtos:\n"
+
 for nome_produto, preco in prdodutos_escolhidos:
-    print(f" -{nome_produto} - R${preco:.2f}")
+    texto += f" - {nome_produto} - R${preco:.2f}\n"
+
+texto += f"\nValor pago          : R${total:.2f}\n"
+texto += f"Forma de Pagamento  : {pagamento}\n"
+texto += f"Data e Hora         : {data}\n"
+
+if pagamento=="pix":
+    texto +=("        QR code")
+    texto += (r"""
++----------------------+
+| ## ## #### ## ## ## |
+| ##    ##   ##    ## |
+| ###### ## ###### ## |
+| ## ## #### ## ## ## |
+| ## ###### ###### ## |
+| ##    ## ## ##    ##|
+| #### #### #### #### |
+| ## ## ## #### ## ## |
++----------------------+
+""")
+
+texto += "-" * 50 + "\n"
+texto += "Declaro ter recebido a importância acima\n"
+texto += "referente ao produto descrito neste recibo.\n"
+texto += "-" * 50 + "\n\n"
+
+texto += f"____________________ {nome} ____________________\n"
+texto += "Assinatura do Recebedor\n\n"
+
+texto += "=" * 50 + "\n"
+texto += "Obrigado pela preferência!\n"
+texto += "=" * 50 + "\n\n"
+
+hPrinter = win32print.OpenPrinter(printer_name)
+
+try:
+    win32print.StartDocPrinter(hPrinter, 1, ("Recibo", None, "RAW"))
+    win32print.StartPagePrinter(hPrinter)
+
+    win32print.WritePrinter(hPrinter, texto.encode("cp850"))
+
+    win32print.EndPagePrinter(hPrinter)
+    win32print.EndDocPrinter(hPrinter)
+
+finally:
+    win32print.ClosePrinter(hPrinter)
+
+
+
+
+
+                    #feito por mim (executa no terminal)
+
+
+# print("\n")
+# print("=" * 50)
+# print("                 RECIBO")
+# print("=" * 50)
+
+# print(f"Nome do Cliente    : {nome}")
+# print(f"CPF                : {cpf}")
+# print("produtos:  ")
+# for nome_produto, preco in prdodutos_escolhidos:
+#     print(f" -{nome_produto} - R${preco:.2f}")
     
-print(f"valor pago   :R${total:.2f}")  
-print(f"Forma de Pagamento : {pagamento}")
-print(f"Data e Hora        : {data}")
+# print(f"valor pago   :R${total:.2f}")  
+# print(f"Forma de Pagamento : {pagamento}")
+# print(f"Data e Hora        : {data}")
 
-print("-" * 50)
-print("Declaro ter recebido a importância acima")
-print("referente ao produto descrito neste recibo.")
-print("-" * 50)
+# print("-" * 50)
+# print("Declaro ter recebido a importância acima")
+# print("referente ao produto descrito neste recibo.")
+# print("-" * 50)
 
-print("\n")
-print(f"____________________{nome}____________________")
-print("Assinatura do Recebedor")
+# print("\n")
+# print(f"____________________{nome}____________________")
+# print("Assinatura do Recebedor")
 
-print("=" * 50)
-print("        Obrigado pela preferência!")
-print("=" * 50)
-print("\n")
+# print("=" * 50)
+# print("        Obrigado pela preferência!")
+# print("=" * 50)
+# print("\n")
